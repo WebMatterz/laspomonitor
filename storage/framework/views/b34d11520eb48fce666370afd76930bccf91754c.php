@@ -11,7 +11,7 @@
     <meta name="csrf-token" content="<?php echo e(csrf_token()); ?>">
         
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta content="<?php echo e(config('app.name', 'LASPO MONITOR')); ?> />
+        <meta content="<?php echo e(config('app.name', 'LASPO MONITOR')); ?>" />
         <meta content="Research" name="Khaleel Adedeji" />
         <!-- App favicon -->
         <link rel="shortcut icon" href="<?php echo e(asset('assets/images/favicon.ico')); ?>">
@@ -25,14 +25,18 @@
          <link href="<?php echo e(asset('assets/libs/sweetalert2/sweetalert2.min.css')); ?>" rel="stylesheet" type="text/css" />
          
         
-         <script type="text/javascript" src="https://unpkg.com/webcam-easy/dist/webcam-easy.min.js"></script>
-
         
       <link rel="stylesheet" type="text/css" href="<?php echo e(asset('css/progress.css')); ?>">
       <link rel="stylesheet" type="text/css" href="<?php echo e(asset('css/overlay.css')); ?>">
       <link rel="stylesheet" type="text/css" href="<?php echo e(asset('DataTables/datatables.min.css')); ?>">
       
 <style type="text/css">
+
+body { font-family: Helvetica, sans-serif; }
+		h2, h3 { margin-top:0; }
+		form { margin-top: 15px; }
+		form > input { margin-right: 15px; }
+		#results { float:right; margin:20px; padding:20px; border:1px solid; background:#ccc; }
     
 
     #button_filter{
@@ -135,7 +139,6 @@ h6.card-text {
       <!-- Right bar overlay-->
         <div class="rightbar-overlay"></div>
 
-         <script src="<?php echo e(asset('js/jquery-3.3.1.min.js')); ?>"></script>
         <script src="<?php echo e(asset('js/app.js')); ?>"></script>
 
 
@@ -154,10 +157,6 @@ h6.card-text {
         <script src="<?php echo e(asset('js/moment.js')); ?>"></script>
         <script src="<?php echo e(asset('assets/js/pages/dashboard.init.js')); ?>"></script>
         <script src="<?php echo e(asset('assets/libs/sweetalert2/sweetalert2.min.js')); ?>"></script>
-        
-        <script src="<?php echo e(asset('assets/js/webcam.js')); ?>"></script>
-        <script src="<?php echo e(asset('assets/js/webcam.min.js')); ?>"></script>
-        
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
        <script src="<?php echo e(asset('DataTables/datatables.js')); ?>" defer ></script>

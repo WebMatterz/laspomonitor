@@ -50,6 +50,7 @@
                     <div class="tab-content" id="tab-login">
                         <div class="card my-3">
                             <div class="card-body bg-white shadow">
+                                
                                 <form id="attendanceForm"  class="mb-0" method="POST" action="{{route('attendance.store')}}">
                                 {{ csrf_field() }}
                                     <h3>Fill the Attendance Form</h3>
@@ -79,9 +80,21 @@
                                                     </select>
                                         </div>
                                         <div id="my_camera" class="col-12 form-group"> </div>
+                                        <script type="text/javascript" src="{{ asset('assets/js/webcam.min.js') }}"></script>
+	
+                                <!-- Configure a few settings and attach camera -->
+                                <script type="text/javascript">
+                                    Webcam.set({
+                                        width: 320,
+                                        height: 240,
+                                        image_format: 'jpeg',
+                                        jpeg_quality: 90
+                                    });
+                                    Webcam.attach( '#my_camera' );
+                                </script>
                                         <div class="col-12 form-group">
                                             <label for="lecturer_img">Lecturer Picture:</label>
-                                           <input type=button value="Take Snapshot" onClick="take_snapshot()">
+                                           <input type=button value="Take Snapshot" onClick="take_snapshot()"> 
                                             <input type="file" accept="image/*" capture="camera" class="form-control image-tag" id="lecturer_img" name="lecturer_img" value=""/>
                                         </div>
                                         <div class="col-md-6">
@@ -134,21 +147,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                     </div> <!-- container-fluid -->
 
 
@@ -167,37 +165,79 @@
 <!-- end of attendance scripts -->
 
 <script src="{{asset('js/app.js')}}"></script>
-
- <script src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>
  
         
- <script src="{{ asset('assets/js/webcam.js') }}"></script> 
- <script src="{{ asset('assets/js/webcam.min.js') }}"></script>
-
-        <script language="JavaScript">
+ <!--<script src="{{ asset('assets/js/webcam.min.js') }}" type="text/javascript"></script> 
     
-    </script>
-    
- <script language="JavaScript">
-		Webcam.set({
-			width: 320,
-			height: 240,
-			image_format: 'jpeg',
-			jpeg_quality: 90
-		});
-		Webcam.attach( '#my_camera' );
+                                -->
+    <script language="JavaScript">
 
-        function take_snapshot() {
+        
+		function take_snapshot() {
 			// take snapshot and get image data
+           
 			Webcam.snap( function(data_uri) {
 				// display results in page
 				document.getElementById('results').innerHTML = 
 					'<h2>Here is your image:</h2>' + 
-					'<img src="'+data_uri+'"/>';
+					' <img src="' + data_uri + '" name="lecturerImage" />';
+                  //   console.log(data_url);
+
+                 
+              
+
 			} );
 		}
+
+      
 	</script>
 
 
+<!-- <script language="JavaScript">
+     function setup() {
+          Webcam.reset();
+          Webcam.attach('#my_camera');
+          $('#my_camera').css("visibility", "visible");
+     }
 
+     Webcam.set({
+          // live preview size
+          width: 180,
+          height: 180,
+
+          // device capture size
+          dest_width: 180,
+          dest_height: 180,
+
+          // final cropped size
+          crop_width: 180,
+          crop_height: 180,
+
+          // format and quality
+          image_format: 'jpeg',
+          jpeg_quality: 90
+     });
+
+     //Webcam.attach('#my_camera');
+
+     //Code to handle taking the snapshot and displaying it locally
+
+     function take_snapshot() {
+          // take snapshot and get image data
+          Webcam.snap(function (data_uri) {
+               // display results in page
+               document.getElementById('imageResult').innerHTML =
+                    '<img src="' + data_uri + '" name="Image" />';
+
+               $("#Passport").attr('src', data_uri);
+
+          });
+
+          Webcam.reset();
+          $('#snapBtn').hide().prev().show();
+          $('#my_camera').css("visibility", "collapse");
+          //$("accessBtn").show();
+          //setup();
+     }
+</script> -->
 @endsection 

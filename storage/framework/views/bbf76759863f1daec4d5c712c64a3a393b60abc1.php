@@ -127,16 +127,6 @@ var _tokens = $('input[name=_token]').val();
 
 
 
-
-
-  
-
-     
-
-
-
-
-
                 });
             </script>
 

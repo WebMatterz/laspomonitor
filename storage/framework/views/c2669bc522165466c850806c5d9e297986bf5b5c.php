@@ -48,9 +48,7 @@
                                             <input type="text" class="form-control" id="supervisorName" name="supervisorName" placeholder="Supervisor Name" value=""/>
                                             <div id="supervisorList"></div>
                                         </div>
-                                        <?php echo e(csrf_field()); ?>
-
-                                        
+                                                                               
                                         <div class="col-3 form-group">
                                             
                                 <label for="first-name">Lecturer Name:</label>
@@ -109,20 +107,63 @@
 </div>
 
 <script src="<?php echo e(asset('js/app.js')); ?>"></script>
+
 <script type="text/javascript">
 
+
 $(document).ready(function() {
+   
     $('#supervisorName').keyup(function(){
+        
+        $value=$(this).val();
+    
+$.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+});
+      
+              $.ajax({
+               type : 'post',
+                url:"<?php echo e(route('autocomplete.fetch')); ?>",
+                data:{'supervisorName':$value},
+                success:function(data) {
+		$('#supervisorList').fadeIn();
+                 $('#supervisorList').html(data);
+                }
+            });  
+    });
+$(document).on('click', 'li', function(){
+        $('#supervisorName').val($(this).text());
+        $('#supervisorList').fadeOut();
+    });
+  
+  });
+</script>
+
+<!-- <script type="text/javascript">
+
+
+$(document).ready(function() {
+   
+    $('#supervisorName').keyup(function(){
+        
         var query = $(this).val();
         if(query != '') {
-            var _token = $('input[name="_token"]').val();
+            var _token = query;
+            $.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+});
             $.ajax({
+               
                 url:"<?php echo e(route('autocomplete.fetch')); ?>",
                 method:"POST",
-                data:{query:query, _token:_token},
+                data:{token:_token},
                 success:function(data) {
-                    $('#supervisorList').fadeIn();
-                    $('#supervisorList').html(data);
+                   console.log(data); //$('#supervisorList').fadeIn();
+                  //  $('#supervisorList').html(data);
                 }
             });
         }
@@ -144,7 +185,7 @@ $('#users_datatable').DataTable();
 
       
 
-</script>
+</script> -->
 
                         
 

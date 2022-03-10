@@ -7,6 +7,7 @@
         <title><?php echo e(config('app.name', 'LASPO MONITOR')); ?> | <?php echo e($title); ?></title>
                   <!-- CSRF Token -->
     <meta name="csrf-token" content="<?php echo e(csrf_token()); ?>">
+
         
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta content="<?php echo e(config('app.name', 'LASPO MONITOR')); ?> | <?php echo e($title); ?>" name="<?php echo e($title); ?>" />
